@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to Cart</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #04395E;
+        }
+
+        #theFather {
+            width: 100%;
+        }
+
+        header {
+            background-color: #A7C4B5;
+            text-align: center;
+            padding: 3vw;
+        }
+
+        #pageContent {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 5vw;
+            padding: 5vw;
+        }
+
+        .itemContainer {
+            background-color: #A9D8B8;
+            padding: 3vw;
+        }
+
+        img {
+            height: 20vh;
+            width: 20vw;
+            border: 2px solid #000;
+            border-radius: 5px;
+
+        }
+
+        .itemButton {
+            margin-left: 5vw;
+        }
+
+        button {
+            padding: 2vw;
+            background-color: #0324fc;
+            color: #fff;
+            border-radius: 10px;
+            font-size: 1.25vw;
+        }
+
+        #deleteContainer {
+            margin-left: 43vw;
+        }
+
+        #display {
+            background-color: #A9D8B8;
+            padding: 3vw;
+            font-size: 3vw;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div id="theFather">
+        <header>
+            <h1>Ecommerce Website</h1>
+        </header>
+        <div id="pageContent">
+            <div class="itemContainer">
+                <img src="images/hat.jfif">
+                <button id="addToCart1" class="itemButton addButton">Add to Cart</button>
+                <button id="removeFromCart1" class="itemButton removeButton">Remove From Cart</button>
+            </div>
+            <div class="itemContainer">
+                <img src="images/sunglasses.webp">
+                <button id="addToCart2" class="itemButton addButton">Add to Cart</button>
+                <button id="removeFromCart2" class="itemButton removeButton">Remove From Cart</button>
+            </div>
+            <div class="itemContainer">
+                <img src="images/wristwatch.jpg">
+                <button id="addToCart3" class="itemButton addButton">Add to Cart</button>
+                <button id="removeFromCart3" class="itemButton removeButton">Remove From Cart</button>
+            </div>
+        </div>
+
+        <div id="display">
+
+        </div>
+        <!--
+            <div id="deleteContainer">
+                <button id="removeFromCart">Remove From Cart</button>
+            </div>
+        -->
+    </div>
+
+    <script>
+        let cart = [];
+       
+        const addButtons = document.getElementsByClassName('addButton');
+        const removeButtons = document.getElementsByClassName('removeButton');
+
+        for (let i = 0; i < addButtons.length; i++) {
+            let item;
+            if (i == 0) {
+                item = 'Sombrero';
+            } else if (i == 1) {
+                item = 'Sunglasses';
+            } else if (i == 2) {
+                item = 'Wrist Watch';
+            };
+
+            addButtons[i].onclick = () => {addToCart(item)};
+        }
+       
+        for (let i = 0; i < removeButtons.length; i++) {
+            let item;
+            if (i == 0) {
+                item = 'Sombrero';
+            } else if (i == 1) {
+                item = 'Sunglasses';
+            } else if (i == 2) {
+                item = 'Wrist Watch';
+            };
+
+            removeButtons[i].onclick = () => {removeFromCart(item)};
+        }
+
+        /*
+        const add1 = document.getElementById('addToCart1');
+        const add2 = document.getElementById('addToCart2');
+        const add3 = document.getElementById('addToCart3');
+        const remove1 = document.getElementById('removeFromCart1');
+        const remove2 = document.getElementById('removeFromCart2');
+        const remove3 = document.getElementById('removeFromCart3');
+        const display = document.getElementById('display');
+        // const removeButton = document.getElementById('removeFromCart');
+
+        
+        add1.addEventListener('click', () => { addToCart('Sombrero') });
+        add2.addEventListener('click', () => { addToCart('Sunglasses') });
+        add3.addEventListener('click', () => { addToCart('Wrist Watch') });
+        remove1.addEventListener('click', () => { removeFromCart('Sombrero') });
+        remove2.addEventListener('click', () => { removeFromCart('Sunglasses') });
+        remove3.addEventListener('click', () => { removeFromCart('Wrist Watch') });*/
+        // removeButton.addEventListener('click', removeFromCart);
+
+        function addToCart(item) {
+            cart.push(item);
+            console.log(cart);
+            updateArray();
+        }
+
+        function removeFromCart(item) {
+            if (cart.indexOf(item) != -1) {
+                cart.splice(cart.indexOf(item), 1);
+                console.log(cart);
+                updateArray();
+            }
+        }
+
+        function updateArray() {
+            let text = 'Cart: \n';
+            for(let i=0; i < cart.length; i++) {
+                text += `${cart[i]} \n`;
+            }
+            display.innerText = text;
+        }
+
+        /*
+function removeFromCart() {
+    cart.pop();
+    console.log(cart);
+}
+*/
+
+    </script>
+
+</body>
+
+</html>
